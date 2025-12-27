@@ -1,9 +1,4 @@
-// Firebase Config (Standard Init)
-const firebaseConfig = {
-  apiKey: "AIzaSyCxPwB79_5iPZPM2uRvrsKTzGcE8jc0pVQ",
-  projectId: "gen-lang-client-0615971949",
-  appId: "1:798306517180:web:0f4a8d531ca7ead66450b9"
-};
+
 firebase.initializeApp(firebaseConfig);
 
 const input = document.getElementById('compoundInput');
