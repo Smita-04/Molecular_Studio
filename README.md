@@ -52,18 +52,17 @@ Unlike standard viewers that crash on complex queries or fail on simple salts, t
 
 The application follows a **Serverless Microservices** architecture hosted on Google Cloud Platform.
 
-```mermaid
 graph TD
-    Client[Frontend (HTML/JS)] -->|POST /exploreCompound| CloudFunc[Firebase Cloud Function]
+    Client["Frontend (HTML/JS)"] -->|"POST /exploreCompound"| CloudFunc["Firebase Cloud Function"]
     
-    CloudFunc -->|Step 1: Dictionary Check| Dictionary{Match?}
-    Dictionary -->|Yes| PDB[RCSB PDB Database]
-    Dictionary -->|No| PubChem3D{PubChem 3D?}
+    CloudFunc -->|"Step 1: Dictionary Check"| Dictionary{"Match?"}
+    Dictionary -->|Yes| PDB["RCSB PDB Database"]
+    Dictionary -->|No| PubChem3D{"PubChem 3D?"}
     
-    PubChem3D -->|Yes| PubChem[PubChem API]
-    PubChem3D -->|No (Fallback)| PubChem2D[PubChem 2D -> 3D Conv]
+    PubChem3D -->|Yes| PubChem["PubChem API"]
+    PubChem3D -->|"No (Fallback)"| PubChem2D["PubChem 2D -> 3D Conv"]
     
-    PubChem2D -->|Fail| PDBSearch[PDB Keyword Search]
+    PubChem2D -->|Fail| PDBSearch["PDB Keyword Search"]
     
     PDB --> Client
     PubChem --> Client
