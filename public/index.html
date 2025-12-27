@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Molecule Studio</title>
+    <!-- 3D Visualization Library -->
+    <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+    <!-- Firebase SDK (Standard Load) -->
+    <script src="/__/firebase/10.7.1/firebase-app-compat.js"></script>
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .studio-card {
+            background: white;
+            width: 95%;
+            max-width: 1000px;
+            height: 80vh;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            background: #fff;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        h1 { margin: 0; font-size: 20px; color: #333; white-space: nowrap; }
+        input {
+            flex-grow: 1; padding: 12px 15px;
+            border: 2px solid #e0e0e0; border-radius: 8px;
+            font-size: 16px; outline: none; transition: 0.2s;
+        }
+        input:focus { border-color: #3b82f6; }
+        button {
+            padding: 12px 25px; background-color: #3b82f6;
+            color: white; border: none; border-radius: 8px;
+            cursor: pointer; font-weight: 600; font-size: 15px;
+        }
+        button:hover { background-color: #2563eb; }
+        
+        .info-bar {
+            padding: 10px 20px; background-color: #fafafa;
+            border-bottom: 1px solid #eee; font-size: 14px; color: #555;
+            display: flex; gap: 30px;
+        }
+        .info-item b { color: #333; }
+
+        #viewer_container {
+            flex-grow: 1; position: relative; background-color: white;
+        }
+        #viewer3d { width: 100%; height: 100%; }
+        
+        /* Message Overlay */
+        #statusMessage { 
+            position: absolute; top: 50%; left: 50%; 
+            transform: translate(-50%, -50%);
+            color: #888; font-size: 18px; text-align: center;
+        }
+        .error { color: #dc2626 !important; }
+    </style>
+</head>
+<body>
+    <div class="studio-card">
+        <div class="header">
+            <h1>Molecule Studio</h1>
+            <input type="text" id="compoundInput" placeholder="Search any Element or Compound (e.g. Gold, Caffeine, DNA)..." value="DNA" />
+            <button id="exploreButton">Visualize</button>
+        </div>
+
+        <div class="info-bar">
+            <span class="info-item" id="formulaDisplay">Formula: -</span>
+            <span class="info-item" id="weightDisplay">Weight: -</span>
+            <span class="info-item" id="atomDisplay">Atoms: -</span>
+        </div>
+
+        <div id="viewer_container">
+            <div id="viewer3d"></div>
+            <div id="statusMessage">Search for a molecule to begin.</div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
